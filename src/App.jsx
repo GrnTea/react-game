@@ -7,7 +7,7 @@ import Word from "./components/Word";
 import Popup from "./components/Popup";
 import Notification from "./components/Notification";
 
-const words = ['application', 'programming', 'interface', 'wizard', 'frog', 'cub'];
+const words = ['apple', 'banana', 'grapes', 'application', 'programming', 'interface', 'wizard', 'frog', 'cub'];
 let selectedWord = words[Math.floor(Math.random() * words.length)];
 
 function App() {
@@ -46,13 +46,13 @@ function App() {
     window.addEventListener('keydown', handleKeydown);
 
     return() => window.removeEventListener('keydown', handleKeydown);
-  });
+  }, [correctLetters, wrongLetters, playable]);
 
   return (
     <>
       <Header/>
       <div className="game-container">
-        <Figure/>
+        <Figure wrongLetters={wrongLetters}/>
         <WrongLetters wrongLetters={wrongLetters}/>
         <Word selectedWord={selectedWord} correctLetters={correctLetters}/>
       </div>
