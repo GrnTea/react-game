@@ -31,7 +31,7 @@ const Figure = ({wrongLetters}) => {
         {errors > 5 &&
         <line x1="140" y1="150" x2="160" y2="180" />
         }
-       {/* {errors > 6 &&
+       {errors > 6 &&
         <circle cx="130" cy="65" r="1" />
         }
         {errors > 7 &&
@@ -39,7 +39,7 @@ const Figure = ({wrongLetters}) => {
         }
         {errors > 7 &&
         <path d="  M 135 77 A 8 8 0 0 1 145 77" />
-        }*/}
+        }
 
       </svg>
     </>
