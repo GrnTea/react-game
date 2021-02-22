@@ -16,7 +16,7 @@ function App() {
   const[playable, setPlayable] = useState(true);
   const[correctLetters, setCorrectLetters] = useState([]);
   const[wrongLetters, setWrongLetters] = useState([]);
-  const[showNotification, setshowNotification] = useState([false]);
+  const[showNotification, setShowNotification] = useState([false]);
 
   console.log(selectedWord);
 
@@ -31,18 +31,15 @@ function App() {
           if (!correctLetters.includes(letter)) {
             setCorrectLetters(currentLetters => [...currentLetters, letter])
           } else {
-            show(setshowNotification);
-
+            show(setShowNotification);
           }
         } else {
           if (!wrongLetters.includes(letter)) {
             setWrongLetters(currentLetters => [...currentLetters, letter])
           } else {
-            show(setshowNotification);
-
+            show(setShowNotification);
           }
         }
-
 
       }
     };
@@ -60,7 +57,11 @@ function App() {
         <WrongLetters wrongLetters={wrongLetters}/>
         <Word selectedWord={selectedWord} correctLetters={correctLetters}/>
       </div>
-      <Popup/>
+      <Popup correctLetters={correctLetters}
+             wrongLetters={wrongLetters}
+             selectedWord={selectedWord}
+             setPlayable={setPlayable}
+      />
       <Notification showNotification={showNotification}/>
     </>
   );
