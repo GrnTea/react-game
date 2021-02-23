@@ -3,15 +3,15 @@
 }
 
 body, #root {
-  background-color: #34495e;
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
   margin: 0;
   overflow: hidden;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient( #1e5584, #34495e);
 }
 
 h1 {
@@ -19,11 +19,11 @@ h1 {
 }
 
 .game-container {
-  padding: 20px 30px;
   position: relative;
-  margin: auto;
-  height: 350px;
   width: 450px;
+  height: 350px;
+  margin: auto;
+  padding: 20px 30px;
 }
 
 .figure-container {
@@ -31,10 +31,6 @@ h1 {
   stroke: #fff;
   stroke-width: 4px;
   stroke-linecap: round;
-}
-
-.figure-part {
-  display: none;
 }
 
 .wrong-letters-container {
@@ -63,20 +59,20 @@ h1 {
 }
 
 .letter {
-  border-bottom: 3px solid #2980b9;
   display: inline-flex;
+  justify-content: center;
+  width: 20px;
+  height: 50px;
+  margin: 0 3px;
   font-size: 30px;
   align-items: center;
-  justify-content: center;
-  margin: 0 3px;
-  height: 50px;
-  width: 20px;
+  border-bottom: 3px solid #2980b9;
 }
 
 .notification-container {
-  padding: 15px 20px;
   position: absolute;
   bottom: -50px;
+  padding: 15px 20px;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px 10px 0 0;
   transition: transform 0.3s ease-in-out;
