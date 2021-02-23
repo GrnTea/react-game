@@ -9,7 +9,7 @@ body, #root {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
+  height: 100vh;
   margin: 0;
   overflow: hidden;
 }
@@ -127,4 +127,32 @@ h1 {
 
 .popup button:focus {
   outline: 0;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  padding: 0 5px;
+}
+
+.github-logo {
+  width: 16px;
+  height: 16px;
+  margin: 0 10px;
+  color: white;
+}
+
+.rss-logo {
+  width: 48px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.footer a {
+  text-decoration: none;
+  color: white;
 }
