@@ -16,9 +16,7 @@ function App() {
   const[playable, setPlayable] = useState(true);
   const[correctLetters, setCorrectLetters] = useState([]);
   const[wrongLetters, setWrongLetters] = useState([]);
-  const[showNotification, setShowNotification] = useState([false]);
-
-  console.log(selectedWord);
+  const[showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     const handleKeydown = event => {
@@ -49,6 +47,14 @@ function App() {
     return() => window.removeEventListener('keydown', handleKeydown);
   }, [correctLetters, wrongLetters, playable]);
 
+  function playAgain(){
+    setPlayable(true);
+    setCorrectLetters([]);
+    setWrongLetters([]);
+    selectedWord = words[Math.floor(Math.random() * words.length)];
+  }
+
+
   return (
     <>
       <Header/>
@@ -61,6 +67,7 @@ function App() {
              wrongLetters={wrongLetters}
              selectedWord={selectedWord}
              setPlayable={setPlayable}
+             playAgain={playAgain}
       />
       <Notification showNotification={showNotification}/>
     </>

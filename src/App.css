@@ -89,3 +89,42 @@ h1 {
 .notification-container.show {
   transform: translateY(-50px);
 }
+
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.popup {
+  padding: 20px;
+  text-align: center;
+  background: #2980b9;
+  border-radius: 5px;
+  box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
+}
+
+.popup button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #2980b9;
+  background-color: #fff;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.popup button:active {
+  transform: scale(0.95);
+}
+
+.popup button:focus {
+  outline: 0;
+}
