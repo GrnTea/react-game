@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SelectBox = ({ setTopic }) => {
+const SelectTopic = ({ setTopic }) => {
 
   function handleChange(e) {
     setTopic(e.target.value);
@@ -24,4 +24,4 @@ const SelectBox = ({ setTopic }) => {
   )
 };
 
-export default SelectBox
+export default SelectTopic

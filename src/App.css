@@ -58,14 +58,20 @@ h1 {
   height: 16px;
 }
 
+.change_volume {
+  width: 40px;
+  margin-left: 10px;
+  outline: none;
+}
+
 .select_input {
   margin: 0 20px;
   padding: 2px 5px;
   background-color: #2980b9;
   color: #fff;
+  border-color: #2980b9;
   border-radius: 4px;
   outline: none;
-
 }
 
 .figure-container {

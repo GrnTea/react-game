@@ -3,7 +3,7 @@ import {checkWin, playSounds} from '../helpers/helpers'
 import win from "../audio/win.mp3";
 import lose from "../audio/lose.mp3";
 
-const Popup = ({correctLetters, wrongLetters, selectedWord, setPlayable, playAgain, setIsPlaying}) => {
+const Popup = ({correctLetters, wrongLetters, selectedWord, setPlayable, playAgain, isAudioPlaying, setIsAudioPlaying: setIsAudioPlaying}) => {
   let finalMessage = '';
   let finalMessageRevealWord = '';
   let playable = true;
@@ -11,14 +11,14 @@ const Popup = ({correctLetters, wrongLetters, selectedWord, setPlayable, playAga
   if (checkWin(correctLetters, wrongLetters, selectedWord) === 'win') {
     finalMessage = 'Congratulations! You won!';
     playable = false;
-    setIsPlaying(false);
-    playSounds(win);
+    isAudioPlaying && playSounds(win);
+    setIsAudioPlaying(false);
   } else if (checkWin(correctLetters, wrongLetters, selectedWord) === 'lose') {
     finalMessage = 'Unfortunately you lost :(';
     finalMessageRevealWord = `...the word was: ${selectedWord}`;
     playable = false;
-    setIsPlaying(false);
-    playSounds(lose);
+    isAudioPlaying && playSounds(lose);
+    setIsAudioPlaying(false);
 }
 
   useEffect(() => setPlayable(playable));

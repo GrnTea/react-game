@@ -13,38 +13,60 @@ import audio1 from "./audio/ukulele.mp3";
 import audio2 from "./audio/hey.mp3";
 import audio3 from "./audio/jazzyfrenchy.mp3";
 import AudioButton from "./components/AudioButton";
-import SelectBox from "./components/SelectBox";
+import SelectTopic from "./components/SelectTopic";
+import VolumeSlider from "./components/VolumeSlider";
 
 
 const words = {
-  fruits: ['apple', 'banana', 'grapes'],
-  animals: ['cat', 'frog', 'dog'],
-  programming: ['application', 'programming', 'interface', 'wizard']
+  fruits: ['apple', 'banana', 'grapes', 'pear', 'orange'],
+  animals: ['cat', 'frog', 'dog', 'goat', 'elephant'],
+  programming: ['application', 'programming', 'interface', 'function', 'wizard']
 };
 
-function getWord(topic) {
-  return words[topic][Math.floor(Math.random() * words[topic].length)]
-}
 
-const words0 = ['apple', 'banana', 'grapes'];
 
-let melodies = {
+// const words0 = ['apple', 'banana', 'grapes'];
+
+const melodies = {
   'music0': new Audio(audio1),
   'music1': new Audio(audio2),
   'music2': new Audio(audio3),
 };
 
-let music = melodies['music1'];
-music.addEventListener('ended', () => music = melodies['music0']);
-music.volume = 0.3;
+const music = melodies['music1'];
+music.volume = 0.2;
+music.loop = true;
+// music.addEventListener('ended', () => music = melodies['music0']);
+
+// function changeVolume({e, music}) {
+//   music.volume = e.currentTarget.value / 100;
+// }
+
+
 
 function App() {
   const [playable, setPlayable] = useState(true);
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [topic, setTopic] = useState('fruits');
+  const [range, setRange] = useState(0.50);
+
+  // function changeVolume(range) {
+  //   music.volume = range;
+  // }
+
+  const music = melodies['music1'];
+  music.volume = 0.2;
+  music.loop = true;
+  music.volume = range;
+  // if (music.volume === 0) setIsAudioPlaying (false);
+
+
+  function getWord(topic) {
+    return words[topic][Math.floor(Math.random() * words[topic].length)]
+  }
 
   let selectedWord = useMemo(() => getWord(topic), [topic]);
   console.log('selectedWord', selectedWord);
@@ -62,14 +84,14 @@ function App() {
             setCorrectLetters(currentLetters => [...currentLetters, letter])
           } else {
             show(setShowNotification);
-            playSounds(note);
+            isAudioPlaying && playSounds(note);
           }
         } else {
           if (!wrongLetters.includes(letter)) {
             setWrongLetters(currentLetters => [...currentLetters, letter])
           } else {
             show(setShowNotification);
-            playSounds(note);
+            isAudioPlaying && playSounds(note);
           }
         }
 
@@ -86,21 +108,22 @@ function App() {
     setPlayable(true);
     setCorrectLetters([]);
     setWrongLetters([]);
-    selectedWord = getWord(topic);
-    setIsPlaying(false);
+    // selectedWord = getWord(topic);
+    setIsAudioPlaying(false);
+    window.location.reload();
   }
 
   useEffect(() => {
       console.log(music);
-      isPlaying ? music.play() : music.pause();
-      //setIsPlaying(!isPlaying);
-      console.log(isPlaying);
+      isAudioPlaying ? music.play() : music.pause();
+      //setIsAudioPlaying(!isAudioPlaying);
+      console.log(isAudioPlaying);
 
       return () => {
-        if (isPlaying) music.pause();
+        if (isAudioPlaying) music.pause();
       }
     },
-    [isPlaying]
+    [isAudioPlaying]
   );
 
 
@@ -109,8 +132,9 @@ function App() {
       <Header />
       <div className="game-container">
         <div className="control_panel">
-          <AudioButton isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
-          <SelectBox setTopic={setTopic} />
+          <AudioButton isAudioPlaying={isAudioPlaying} setIsAudioPlaying={setIsAudioPlaying}/>
+          <VolumeSlider setRange={setRange}/>
+          <SelectTopic setTopic={setTopic} />
         </div>
         <Figure wrongLetters={wrongLetters}/>
         <WrongLetters wrongLetters={wrongLetters}/>
@@ -123,7 +147,8 @@ function App() {
              selectedWord={selectedWord}
              setPlayable={setPlayable}
              playAgain={playAgain}
-             setIsPlaying={setIsPlaying}
+             isAudioPlaying={isAudioPlaying}
+             setIsAudioPlaying={setIsAudioPlaying}
       />}
       <Notification showNotification={showNotification}/>
     </>

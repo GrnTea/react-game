@@ -22,7 +22,7 @@ export function checkWin(correct, wrong, word) {
 export function playSounds(track) {
   let audio = new Audio(track);
   audio.play();
-  audio.volume = 0.2;
+  audio.volume = 0.3;
 }
 
 

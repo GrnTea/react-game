@@ -2,11 +2,12 @@ import React from 'react'
 import {ReactComponent as VolumeOn} from "../img/volume.svg";
 import {ReactComponent as VolumeOff} from "../img/mute.svg";
 
-const AudioButton = ({isPlaying, setIsPlaying}) => {
+const AudioButton = ({isAudioPlaying, setIsAudioPlaying}) => {
+
   return(
     <div>
-      <button onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? <VolumeOn className="audio-button" /> : <VolumeOff className="audio-button" />}
+      <button onClick={() => setIsAudioPlaying(!isAudioPlaying)}>
+        {isAudioPlaying ? <VolumeOn className="audio-button" /> : <VolumeOff className="audio-button" />}
       </button>
     </div>
   )
