@@ -29,7 +29,7 @@ h1 {
 .control_panel {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 50px;
 }
@@ -58,15 +58,12 @@ h1 {
   height: 16px;
 }
 
-.select_box {
-
-}
-
 .select_input {
   margin: 0 20px;
   padding: 2px 5px;
-  border: 1px #fff solid;
-  border-radius: 5px;
+  background-color: #2980b9;
+  color: #fff;
+  border-radius: 4px;
   outline: none;
 
 }
