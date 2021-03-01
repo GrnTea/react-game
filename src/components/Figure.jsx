@@ -36,7 +36,7 @@ const Figure = ({wrongLetters}) => {
         {errors > 7 &&
         <circle cx="150" cy="65" r="1" />
         }
-        {errors > 7 &&
+        {errors > 8 &&
         <path d="  M 135 77 A 8 8 0 0 1 145 77" />
         }
 

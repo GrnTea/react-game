@@ -5,7 +5,7 @@ export function showNotification(setter) {
   }, 2000)
 }
 
-export function checkWin(correct, wrong, word) {
+export function checkWin(correct, wrong, word, errors) {
   let status = 'win';
 
   word.split('').forEach(letter => {
@@ -14,7 +14,7 @@ export function checkWin(correct, wrong, word) {
     }
   });
 
-  if(wrong.length === 6) status = 'lose';
+  if(wrong.length === errors) status = 'lose';
 
   return status;
 }
@@ -22,7 +22,7 @@ export function checkWin(correct, wrong, word) {
 export function playSounds(track) {
   let audio = new Audio(track);
   audio.play();
-  audio.volume = 0.3;
+  audio.volume = 0.5;
 }
 
 

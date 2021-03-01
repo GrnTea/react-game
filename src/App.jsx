@@ -13,36 +13,30 @@ import audio1 from "./audio/ukulele.mp3";
 import audio2 from "./audio/hey.mp3";
 import audio3 from "./audio/jazzyfrenchy.mp3";
 import AudioButton from "./components/AudioButton";
-import SelectTopic from "./components/SelectTopic";
 import VolumeSlider from "./components/VolumeSlider";
-
+import SelectTopic from "./components/SelectTopic";
+import SelectLevel from "./components/SelectLevel";
 
 const words = {
   fruits: ['apple', 'banana', 'grapes', 'pear', 'orange'],
   animals: ['cat', 'frog', 'dog', 'goat', 'elephant'],
-  programming: ['application', 'programming', 'interface', 'function', 'wizard']
+  IT: ['application', 'programming', 'interface', 'function', 'wizard']
 };
-
-
-
-// const words0 = ['apple', 'banana', 'grapes'];
 
 const melodies = {
-  'music0': new Audio(audio1),
-  'music1': new Audio(audio2),
-  'music2': new Audio(audio3),
+  'fruits': new Audio(audio1),
+  'animals': new Audio(audio2),
+  'IT': new Audio(audio3),
 };
 
-const music = melodies['music1'];
+/*const music = melodies[topic];
 music.volume = 0.2;
-music.loop = true;
+music.loop = true;*/
 // music.addEventListener('ended', () => music = melodies['music0']);
 
 // function changeVolume({e, music}) {
 //   music.volume = e.currentTarget.value / 100;
 // }
-
-
 
 function App() {
   const [playable, setPlayable] = useState(true);
@@ -50,17 +44,19 @@ function App() {
   const [wrongLetters, setWrongLetters] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [topic, setTopic] = useState('fruits');
   const [range, setRange] = useState(0.50);
+  const [topic, setTopic] = useState('fruits');
+  const [level, setLevel] = useState('fruits');
 
-  // function changeVolume(range) {
-  //   music.volume = range;
-  // }
-
-  const music = melodies['music1'];
-  music.volume = 0.2;
+  let music;
+  music = melodies[topic];
+  // useEffect(() => {
+  //   music = melodies[topic];
+  // }, [topic]);
   music.loop = true;
   music.volume = range;
+
+
   // if (music.volume === 0) setIsAudioPlaying (false);
 
 
@@ -94,7 +90,6 @@ function App() {
             isAudioPlaying && playSounds(note);
           }
         }
-
       }
     };
 
@@ -115,6 +110,7 @@ function App() {
 
   useEffect(() => {
       console.log(music);
+      music = melodies[topic];
       isAudioPlaying ? music.play() : music.pause();
       //setIsAudioPlaying(!isAudioPlaying);
       console.log(isAudioPlaying);
@@ -123,7 +119,7 @@ function App() {
         if (isAudioPlaying) music.pause();
       }
     },
-    [isAudioPlaying]
+    [isAudioPlaying, topic]
   );
 
 
@@ -135,16 +131,19 @@ function App() {
           <AudioButton isAudioPlaying={isAudioPlaying} setIsAudioPlaying={setIsAudioPlaying}/>
           <VolumeSlider setRange={setRange}/>
           <SelectTopic setTopic={setTopic} />
+          <SelectLevel setLevel={setLevel} />
+
         </div>
         <Figure wrongLetters={wrongLetters}/>
         <WrongLetters wrongLetters={wrongLetters}/>
         <Word selectedWord={selectedWord} correctLetters={correctLetters}/>
       </div>
       <Footer/>
-      {!!checkWin(correctLetters, wrongLetters, selectedWord).length && <Popup
+      {!!checkWin(correctLetters, wrongLetters, selectedWord, level).length && <Popup
              correctLetters={correctLetters}
              wrongLetters={wrongLetters}
              selectedWord={selectedWord}
+             level={level}
              setPlayable={setPlayable}
              playAgain={playAgain}
              isAudioPlaying={isAudioPlaying}

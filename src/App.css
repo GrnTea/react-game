@@ -60,12 +60,12 @@ h1 {
 
 .change_volume {
   width: 40px;
-  margin-left: 10px;
+  margin-left: 20px;
   outline: none;
 }
 
 .select_input {
-  margin: 0 20px;
+  margin-left: 20px;
   padding: 2px 5px;
   background-color: #2980b9;
   color: #fff;
@@ -83,7 +83,7 @@ h1 {
 
 .wrong-letters-container {
   position: absolute;
-  top: 20px;
+  top: 100px;
   right: 20px;
   display: flex;
   flex-direction: column;
