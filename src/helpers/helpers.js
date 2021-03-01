@@ -18,3 +18,11 @@ export function checkWin(correct, wrong, word) {
 
   return status;
 }
+
+export function playSounds(track) {
+  let audio = new Audio(track);
+  audio.play();
+  audio.volume = 0.2;
+}
+
+

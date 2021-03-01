@@ -21,9 +21,54 @@ h1 {
 .game-container {
   position: relative;
   width: 450px;
-  height: 350px;
-  margin: auto;
+  height: 500px;
+  margin: 0 auto;
   padding: 20px 30px;
+}
+
+.control_panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.control_panel button {
+  width: 26px;
+  height: 26px;
+  padding: 5px;
+  color: #fff;
+  background-color: #2980b9;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.control_panel button:active {
+  transform: scale(0.95);
+}
+
+.control_panel button:focus {
+  outline: 0;
+}
+
+.audio-button {
+  width: 16px;
+  height: 16px;
+}
+
+.select_box {
+
+}
+
+.select_input {
+  margin: 0 20px;
+  padding: 2px 5px;
+  border: 1px #fff solid;
+  border-radius: 5px;
+  outline: none;
+
 }
 
 .figure-container {
@@ -53,7 +98,7 @@ h1 {
 .word {
   display: flex;
   position: absolute;
-  bottom: 10px;
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
 }
