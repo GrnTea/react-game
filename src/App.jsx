@@ -9,6 +9,7 @@ import Notification from "./components/Notification";
 import { playSounds, showNotification as show, checkWin } from "./helpers/helpers";
 import Footer from "./components/Footer";
 import note from "./audio/click-2.wav";
+import audio0 from "./audio/audio0.mp3";
 import audio1 from "./audio/ukulele.mp3";
 import audio2 from "./audio/hey.mp3";
 import audio3 from "./audio/jazzyfrenchy.mp3";
@@ -16,14 +17,17 @@ import AudioButton from "./components/AudioButton";
 import VolumeSlider from "./components/VolumeSlider";
 import SelectTopic from "./components/SelectTopic";
 import SelectLevel from "./components/SelectLevel";
+import StartGame from "./components/StartGame";
 
 const words = {
+  audio0: ['a', 'b', 'g', 'p', 'o'],
   fruits: ['apple', 'banana', 'grapes', 'pear', 'orange'],
   animals: ['cat', 'frog', 'dog', 'goat', 'elephant'],
   IT: ['application', 'programming', 'interface', 'function', 'wizard']
 };
 
 const melodies = {
+  'audio0': new Audio(audio0),
   'fruits': new Audio(audio1),
   'animals': new Audio(audio2),
   'IT': new Audio(audio3),
@@ -45,16 +49,24 @@ function App() {
   const [showNotification, setShowNotification] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [range, setRange] = useState(0.50);
-  const [topic, setTopic] = useState('fruits');
-  const [errors, setErrors] = useState(6);
+  const [topic, setTopic] = useState('audio0');
+  const [errors, setErrors] = useState('');
+  const [canStartGame, setCanStartGame] = useState(false);
 
   let music;
   music = melodies[topic];
+  // if (topic === '') {
+  //   alert("Choose your topic first!")
+  // } else {
+  //   music = melodies[topic];
+  music.loop = true;
+  music.volume = range;
+
+
   // useEffect(() => {
   //   music = melodies[topic];
   // }, [topic]);
-  music.loop = true;
-  music.volume = range;
+
 
 
   // if (music.volume === 0) setIsAudioPlaying (false);
@@ -132,11 +144,12 @@ function App() {
           <VolumeSlider setRange={setRange}/>
           <SelectTopic setTopic={setTopic} />
           <SelectLevel setErrors={setErrors} />
+          <StartGame setCanStartGame={setCanStartGame} topic={topic} errors={errors} isAudioPlaying={isAudioPlaying}/>
 
         </div>
         <Figure wrongLetters={wrongLetters}/>
         <WrongLetters wrongLetters={wrongLetters}/>
-        <Word selectedWord={selectedWord} correctLetters={correctLetters}/>
+        {canStartGame && <Word selectedWord={selectedWord} correctLetters={correctLetters}/>}
       </div>
       <Footer/>
       {!!checkWin(correctLetters, wrongLetters, selectedWord, errors).length && <Popup

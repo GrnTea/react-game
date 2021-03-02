@@ -15,7 +15,6 @@ export function checkWin(correct, wrong, word, errors) {
   });
 
   if(wrong.length === errors) status = 'lose';
-
   return status;
 }
 
