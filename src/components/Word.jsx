@@ -1,6 +1,12 @@
 import React from 'react'
 
 const Word = ({ selectedWord, correctLetters }) => {
+  let moves;
+
+  localStorage.setItem('correctLetters', correctLetters);
+  moves = correctLetters.length;
+  localStorage.setItem('moves', moves);
+
   return(
     <div className="word">
       {selectedWord?.split('').map((letter, index) => {

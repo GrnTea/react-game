@@ -78,6 +78,8 @@ function App() {
 
   let selectedWord = useMemo(() => getWord(topic), [topic]);
   console.log('selectedWord', selectedWord);
+  localStorage.setItem('selectedWord', selectedWord);
+
 
 
   useEffect(() => {
@@ -96,7 +98,9 @@ function App() {
           }
         } else {
           if (!wrongLetters.includes(letter)) {
-            setWrongLetters(currentLetters => [...currentLetters, letter])
+            setWrongLetters(currentLetters => [...currentLetters, letter]);
+            console.log('wrong', wrongLetters);
+
           } else {
             show(setShowNotification);
             isAudioPlaying && playSounds(note);
@@ -115,7 +119,6 @@ function App() {
     setPlayable(true);
     setCorrectLetters([]);
     setWrongLetters([]);
-    // selectedWord = getWord(topic);
     setIsAudioPlaying(false);
     window.location.reload();
   }
@@ -124,8 +127,6 @@ function App() {
       console.log(music);
       music = melodies[topic];
       isAudioPlaying ? music.play() : music.pause();
-      //setIsAudioPlaying(!isAudioPlaying);
-      console.log(isAudioPlaying);
 
       return () => {
         if (isAudioPlaying) music.pause();

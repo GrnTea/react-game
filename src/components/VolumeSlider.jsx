@@ -10,7 +10,7 @@ const VolumeSlider = ({ setRange }) => {
   }
 
   return(
-      <input className="change_volume" type="range"  onChange={handleChange}/>
+      <input className="change_volume" type="range" min="0.3" onChange={handleChange}/>
   )
 };
 

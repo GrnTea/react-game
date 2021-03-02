@@ -4,6 +4,7 @@ const SelectLevel = ({ setErrors }) => {
 
   function handleChange(e) {
     setErrors(parseFloat(e.target.value));
+    localStorage.setItem('selectedErrors', e.target.value);
     console.log(e.target.value);
     e.target.blur();
   }

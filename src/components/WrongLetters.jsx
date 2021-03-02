@@ -1,6 +1,8 @@
 import React from 'react'
 
 const WrongLetters = ({wrongLetters}) => {
+  localStorage.setItem('wrongLetters', wrongLetters);
+
   return(
     <div className="wrong-letters-container">
       <div>
