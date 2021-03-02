@@ -83,8 +83,9 @@ h1 {
 
 .wrong-letters-container {
   position: absolute;
+  width: 200px;
   top: 100px;
-  right: 20px;
+  right: 30px;
   display: flex;
   flex-direction: column;
   text-align: right;

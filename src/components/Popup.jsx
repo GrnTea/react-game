@@ -3,17 +3,18 @@ import {checkWin, playSounds} from '../helpers/helpers'
 import win from "../audio/win.mp3";
 import lose from "../audio/lose.mp3";
 
-const Popup = ({correctLetters, wrongLetters, selectedWord, level, setPlayable, playAgain, isAudioPlaying, setIsAudioPlaying: setIsAudioPlaying}) => {
+const Popup = ({correctLetters, wrongLetters, selectedWord, errors, setPlayable, playAgain, isAudioPlaying, setIsAudioPlaying: setIsAudioPlaying}) => {
   let finalMessage = '';
   let finalMessageRevealWord = '';
   let playable = true;
 
-  if (checkWin(correctLetters, wrongLetters, selectedWord, level) === 'win') {
+  if (checkWin(correctLetters, wrongLetters, selectedWord, errors) === 'win') {
     finalMessage = 'Congratulations! You won!';
     playable = false;
     isAudioPlaying && playSounds(win);
     setIsAudioPlaying(false);
-  } else if (checkWin(correctLetters, wrongLetters, selectedWord, level) === 'lose') {
+
+  } else if (checkWin(correctLetters, wrongLetters, selectedWord, errors) === 'lose') {
     finalMessage = 'Unfortunately you lost :(';
     finalMessageRevealWord = `...the word was: ${selectedWord}`;
     playable = false;

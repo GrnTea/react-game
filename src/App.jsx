@@ -46,7 +46,7 @@ function App() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [range, setRange] = useState(0.50);
   const [topic, setTopic] = useState('fruits');
-  const [level, setLevel] = useState('fruits');
+  const [errors, setErrors] = useState(6);
 
   let music;
   music = melodies[topic];
@@ -131,7 +131,7 @@ function App() {
           <AudioButton isAudioPlaying={isAudioPlaying} setIsAudioPlaying={setIsAudioPlaying}/>
           <VolumeSlider setRange={setRange}/>
           <SelectTopic setTopic={setTopic} />
-          <SelectLevel setLevel={setLevel} />
+          <SelectLevel setErrors={setErrors} />
 
         </div>
         <Figure wrongLetters={wrongLetters}/>
@@ -139,11 +139,11 @@ function App() {
         <Word selectedWord={selectedWord} correctLetters={correctLetters}/>
       </div>
       <Footer/>
-      {!!checkWin(correctLetters, wrongLetters, selectedWord, level).length && <Popup
+      {!!checkWin(correctLetters, wrongLetters, selectedWord, errors).length && <Popup
              correctLetters={correctLetters}
              wrongLetters={wrongLetters}
              selectedWord={selectedWord}
-             level={level}
+             errors={errors}
              setPlayable={setPlayable}
              playAgain={playAgain}
              isAudioPlaying={isAudioPlaying}

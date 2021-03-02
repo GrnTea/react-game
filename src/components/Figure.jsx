@@ -39,6 +39,15 @@ const Figure = ({wrongLetters}) => {
         {errors > 8 &&
         <path d="  M 135 77 A 8 8 0 0 1 145 77" />
         }
+        {errors > 9 &&
+        <line x1="160" y1="180" x2="165" y2="175" />
+        }
+        {errors > 10 &&
+        <line x1="120" y1="180" x2="115" y2="175" />
+        }
+        {errors > 11 &&
+        <line x1="120" y1="58" x2="160" y2="58" />
+        }
 
       </svg>
     </>
