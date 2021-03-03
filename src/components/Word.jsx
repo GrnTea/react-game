@@ -7,10 +7,10 @@ const Word = ({ selectedWord, correctLetters }) => {
   moves = correctLetters.length;
   localStorage.setItem('moves', moves);
 
-  return(
+  return (
     <div className="word">
       {selectedWord?.split('').map((letter, index) => {
-        return(
+        return (
           <span className="letter" key={index}>
             {correctLetters.includes(letter) ? letter : ''}
           </span>

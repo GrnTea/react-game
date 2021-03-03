@@ -29,16 +29,18 @@ h1 {
 .control_panel {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 50px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: baseline;
+  height: 75px;
+  margin-bottom: 5px;
 }
 
 .control_panel button {
 /*  width: 26px;
   height: 26px;*/
   padding: 5px;
-  margin: 0 10px;
+  margin: 5px 10px;
   color: #fff;
   background-color: #2980b9;
   border: 0;
@@ -85,7 +87,7 @@ h1 {
 .wrong-letters-container {
   position: absolute;
   width: 200px;
-  top: 100px;
+  top: 110px;
   right: 30px;
   display: flex;
   flex-direction: column;
@@ -147,6 +149,9 @@ h1 {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.3);
 }
+.popup-container.statistics {
+  position: absolute;
+}
 
 .popup {
   padding: 20px;
@@ -154,6 +159,41 @@ h1 {
   background: #2980b9;
   border-radius: 5px;
   box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
+}
+
+.statistics > .popup {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.popup>.table{
+  overflow-y: scroll;
+  height: 70%;
+}
+
+.table thead {
+  font-weight: bold;
+}
+.popup td {
+  border-bottom: 1px solid #ffffff;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px #ffffff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2980b8;;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #34495e;
+  border-radius: 10px;
 }
 
 .popup button {

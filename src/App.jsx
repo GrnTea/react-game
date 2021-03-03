@@ -18,6 +18,8 @@ import VolumeSlider from "./components/VolumeSlider";
 import SelectTopic from "./components/SelectTopic";
 import SelectLevel from "./components/SelectLevel";
 import StartGame from "./components/StartGame";
+import StatisticsPopup from "./components/StatisticsPopup";
+import StatisticsButton from "./components/StatisticsButton";
 
 const words = {
   audio0: ['a', 'b', 'g', 'p', 'o'],
@@ -52,6 +54,7 @@ function App() {
   const [topic, setTopic] = useState('audio0');
   const [errors, setErrors] = useState('');
   const [canStartGame, setCanStartGame] = useState(false);
+  const [canSeeStatistics, setCanSeeStatistics] = useState(false);
 
   let music;
   music = melodies[topic];
@@ -115,12 +118,20 @@ function App() {
   }, [correctLetters, wrongLetters, playable]);
 
 
+  const setStatistics = function(){
+    const attempts = wrongLetters.length + correctLetters.length;
+    const statFromStorage = JSON.parse(localStorage.getItem('statisticsStorage')) || [];
+    statFromStorage.push({selectedWord, errors, topic, wrongLetters, correctLetters, attempts});
+    localStorage.setItem('statisticsStorage', JSON.stringify(statFromStorage));
+  };
+
   function playAgain(){
     setPlayable(true);
     setCorrectLetters([]);
     setWrongLetters([]);
     setIsAudioPlaying(false);
     window.location.reload();
+    setStatistics();
   }
 
   useEffect(() => {
@@ -146,11 +157,12 @@ function App() {
           <SelectTopic setTopic={setTopic} />
           <SelectLevel setErrors={setErrors} />
           <StartGame setCanStartGame={setCanStartGame} topic={topic} errors={errors} isAudioPlaying={isAudioPlaying}/>
-
+          <StatisticsButton canSeeStatistics={canSeeStatistics} setCanSeeStatistics={setCanSeeStatistics}/>
         </div>
         <Figure wrongLetters={wrongLetters}/>
         <WrongLetters wrongLetters={wrongLetters}/>
         {canStartGame && <Word selectedWord={selectedWord} correctLetters={correctLetters}/>}
+        <StatisticsPopup canSeeStatistics={canSeeStatistics} setCanSeeStatistics={setCanSeeStatistics}/>
       </div>
       <Footer/>
       {!!checkWin(correctLetters, wrongLetters, selectedWord, errors).length && <Popup
@@ -164,6 +176,7 @@ function App() {
              setIsAudioPlaying={setIsAudioPlaying}
       />}
       <Notification showNotification={showNotification}/>
+
     </>
   );
 }
