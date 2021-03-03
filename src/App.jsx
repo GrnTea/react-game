@@ -22,7 +22,7 @@ import StatisticsPopup from "./components/StatisticsPopup";
 import StatisticsButton from "./components/StatisticsButton";
 
 const words = {
-  audio0: ['a', 'b', 'g', 'p', 'o'],
+  audio0: ['abcdefghijklmnopqrstuvwxyz'],
   fruits: ['apple', 'banana', 'grapes', 'pear', 'orange'],
   animals: ['cat', 'frog', 'dog', 'goat', 'elephant'],
   IT: ['application', 'programming', 'interface', 'function', 'wizard']
@@ -34,15 +34,6 @@ const melodies = {
   'animals': new Audio(audio2),
   'IT': new Audio(audio3),
 };
-
-/*const music = melodies[topic];
-music.volume = 0.2;
-music.loop = true;*/
-// music.addEventListener('ended', () => music = melodies['music0']);
-
-// function changeVolume({e, music}) {
-//   music.volume = e.currentTarget.value / 100;
-// }
 
 function App() {
   const [playable, setPlayable] = useState(true);
@@ -58,32 +49,14 @@ function App() {
 
   let music;
   music = melodies[topic];
-  // if (topic === '') {
-  //   alert("Choose your topic first!")
-  // } else {
-  //   music = melodies[topic];
   music.loop = true;
   music.volume = range;
-
-
-  // useEffect(() => {
-  //   music = melodies[topic];
-  // }, [topic]);
-
-
-
-  // if (music.volume === 0) setIsAudioPlaying (false);
-
 
   function getWord(topic) {
     return words[topic][Math.floor(Math.random() * words[topic].length)]
   }
 
   let selectedWord = useMemo(() => getWord(topic), [topic]);
-  console.log('selectedWord', selectedWord);
-  localStorage.setItem('selectedWord', selectedWord);
-
-
 
   useEffect(() => {
       const handleKeydown = event => {
@@ -102,7 +75,6 @@ function App() {
         } else {
           if (!wrongLetters.includes(letter)) {
             setWrongLetters(currentLetters => [...currentLetters, letter]);
-            console.log('wrong', wrongLetters);
 
           } else {
             show(setShowNotification);
@@ -135,7 +107,6 @@ function App() {
   }
 
   useEffect(() => {
-      console.log(music);
       music = melodies[topic];
       isAudioPlaying ? music.play() : music.pause();
 

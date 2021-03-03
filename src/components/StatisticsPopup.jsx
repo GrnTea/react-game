@@ -1,10 +1,8 @@
 import React from 'react'
 
-
 const StatisticsPopup = ({canSeeStatistics, setCanSeeStatistics}) => {
 
   const statFromStorage = JSON.parse(localStorage.getItem('statisticsStorage')) || [];
-  console.log('statFromStorage', statFromStorage );
 
   return (
   <div className="popup-container statistics" style={canSeeStatistics ? {display: 'flex'} : {}}>
@@ -64,6 +62,8 @@ const StatisticsPopup = ({canSeeStatistics, setCanSeeStatistics}) => {
           </table>
         </div>
       <button onClick={() => setCanSeeStatistics(false)}>Close</button>
+      <button onClick={() => localStorage.removeItem('statisticsStorage')}>Clear</button>
+
     </div>
   </div>
   )

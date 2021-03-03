@@ -169,6 +169,7 @@ h1 {
 .popup>.table{
   overflow-y: scroll;
   height: 70%;
+  font-size: 15px;
 }
 
 .table thead {
@@ -176,6 +177,8 @@ h1 {
 }
 .popup td {
   border-bottom: 1px solid #ffffff;
+  padding-right: 7px;
+
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -197,7 +200,7 @@ h1 {
 }
 
 .popup button {
-  margin-top: 20px;
+  margin: 20px 20px 0 0;
   padding: 12px 20px;
   font-size: 16px;
   color: #2980b9;

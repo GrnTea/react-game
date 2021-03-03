@@ -1,6 +1,4 @@
 import React from 'react'
-// import {playAudio} from "../helpers/helpers";
-
 
 const Header = () => {
   return(

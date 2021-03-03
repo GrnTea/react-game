@@ -4,7 +4,6 @@ const SelectTopic = ({ setTopic }) => {
 
   function handleChange(e) {
     setTopic(e.target.value);
-    console.log(e.target.value);
     localStorage.setItem('topic', e.target.value);
     e.target.blur();
   }
